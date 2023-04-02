@@ -13,8 +13,8 @@ mkdir -p python/{big,med,thumb}
 for i in ~/.config/nvim/colors/*.vim; do 
     bn=`basename $i .vim`
     echo == $bn ==
-    nvim --headless +"colorscheme $bn" +'TOhtml' +"w! python/$bn.html" +'qa!' preview.py | tee /dev/null
-    google-chrome --headless --no-gpu --force-device-scale-factor=2 --screenshot="python/$bn-ss.png" "python/$bn.html"
+    nvim --headless +"colorscheme $bn" +'TOhtml' +"w! python/$bn.html" +'qa!' preview.py 2> /dev/null
+    google-chrome --headless --no-gpu --force-device-scale-factor=2 --screenshot="python/$bn-ss.png" "python/$bn.html" 2> /dev/null
     convert python/$bn-ss.png -crop 800x400+0+0 -filter Gaussian  -resample 300x300 python/big/$bn-big.png
     convert python/$bn-ss.png -crop 400x200+0+0 -filter Gaussian  -resample 300x300 python/med/$bn-med.png
     convert python/$bn-ss.png -crop 200x200+0+0 -resample 64x64 python/thumb/$bn.jpg
